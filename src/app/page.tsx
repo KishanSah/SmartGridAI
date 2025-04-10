@@ -17,13 +17,21 @@ export default function Home() {
     <main className="min-h-screen">
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center ">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e')] bg-cover bg-center opacity-60"></div>
+         <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
+        <video autoPlay loop muted playsInline className="absolute min-w-full min-h-full object-cover">
+          <source src="https://cdn.dribbble.com/userupload/18851822/file/original-064bf23edf508c5be11fd8c12ca2beb6.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        {/* Overlay to make text more readable */}
+        <div className="absolute inset-0 bg-black/50 z-10"></div>
+      </div>
+        {/* <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e')] bg-cover bg-center opacity-60"></div> */}
         <div className="container mx-auto px-4 text-center z-10" data-aos="fade-up">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6">SmartGridAI</h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white">SmartGridAI</h1>
+          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-white">
             Revolutionizing power distribution through intelligent microgrid simulation and management
           </p>
-          <div className="flex justify-center gap-4">
+          <div className="flex justify-center gap-4 bg-none">
             <Link 
               href="/simulator"
               className="inline-flex items-center px-8 py-3 text-lg bg-blue-500 hover:bg-blue-600 rounded-full transition-all transform hover:scale-105"
@@ -168,3 +176,151 @@ export default function Home() {
     </main>
   );
 }
+// import Link from "next/link"
+// import { Button } from "@/components/ui/button"
+// import { ChevronRight, BarChart3, Zap, Shield } from "lucide-react"
+
+// export default function Home() {
+//   return (
+//     <div className="relative min-h-screen flex flex-col">
+//       {/* Video Background */}
+//       <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
+//         <video autoPlay loop muted playsInline className="absolute min-w-full min-h-full object-cover">
+//           <source src="https://cdn.dribbble.com/userupload/18851822/file/original-064bf23edf508c5be11fd8c12ca2beb6.mp4" type="video/mp4" />
+//           Your browser does not support the video tag.
+//         </video>
+//         {/* Overlay to make text more readable */}
+//         <div className="absolute inset-0 bg-black/50 z-10"></div>
+//       </div>
+
+//       {/* Header */}
+//       <header className="relative z-20 w-full py-6 px-4 md:px-8">
+//         <div className="container mx-auto flex justify-between items-center">
+//           <div className="flex items-center">
+//             <span className="text-yellow-400 font-bold text-2xl">SmartGrid</span>
+//             <span className="text-blue-400 font-bold text-2xl">AI</span>
+//           </div>
+//           <nav className="hidden md:flex space-x-8">
+//             <Link href="/dashboard" className="text-white hover:text-yellow-400 transition-colors">
+//               Dashboard
+//             </Link>
+//             <Link href="/lida" className="text-white hover:text-yellow-400 transition-colors">
+//               Analysis Point
+//             </Link>
+//             <Link href="/simulator" className="text-white hover:text-yellow-400 transition-colors">
+//               Simulator
+//             </Link>
+            
+//           </nav>
+//           <Button className="bg-yellow-400 hover:bg-yellow-500 text-black">Get Started</Button>
+//         </div>
+//       </header>
+
+//       {/* Hero Section */}
+//       <main className="relative z-20 flex-grow flex flex-col justify-center px-4 md:px-8">
+//         <div className="container mx-auto max-w-5xl">
+//           <div className="flex flex-col items-start space-y-6 md:w-2/3">
+//             <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight">
+//               Powering the Future with <span className="text-yellow-400">Intelligent</span> Energy Solutions
+//             </h1>
+//             <p className="text-lg md:text-xl text-gray-200">
+//               SmartGridAI combines artificial intelligence with advanced energy management to optimize power
+//               distribution, reduce costs, and accelerate the transition to renewable energy.
+//             </p>
+//             <div className="flex flex-col sm:flex-row gap-4">
+//               <Button className="bg-yellow-400 hover:bg-yellow-500 text-black px-8 py-6 text-lg">
+//                 Explore Solutions
+//                 <ChevronRight className="ml-2 h-5 w-5" />
+//               </Button>
+//               <Button
+//                 variant="outline"
+//                 className="border-blue-400 text-blue-400 hover:bg-blue-400/10 px-8 py-6 text-lg"
+//               >
+//                 Watch Demo
+//               </Button>
+//             </div>
+//           </div>
+//         </div>
+//       </main>
+
+//       {/* Features Section */}
+//       <section className="relative z-20 py-16 px-4 md:px-8 bg-black/70 backdrop-blur-sm">
+//         <div className="container mx-auto">
+//           <h2 className="text-3xl font-bold text-center text-white mb-12">
+//             Transforming Energy Management with <span className="text-yellow-400">AI</span>
+//           </h2>
+//           <div className="grid md:grid-cols-3 gap-8">
+//             <div className="bg-gray-900/80 p-6 rounded-lg border border-blue-500/30 hover:border-blue-400 transition-colors">
+//               <div className="bg-blue-500/20 p-3 rounded-full w-fit mb-4">
+//                 <BarChart3 className="h-8 w-8 text-blue-400" />
+//               </div>
+//               <h3 className="text-xl font-bold text-white mb-2">Predictive Analytics</h3>
+//               <p className="text-gray-300">
+//                 Forecast energy demands and optimize distribution with our advanced AI algorithms.
+//               </p>
+//             </div>
+//             <div className="bg-gray-900/80 p-6 rounded-lg border border-yellow-500/30 hover:border-yellow-400 transition-colors">
+//               <div className="bg-yellow-500/20 p-3 rounded-full w-fit mb-4">
+//                 <Zap className="h-8 w-8 text-yellow-400" />
+//               </div>
+//               <h3 className="text-xl font-bold text-white mb-2">Smart Distribution</h3>
+//               <p className="text-gray-300">
+//                 Dynamically balance loads and prevent outages with real-time monitoring and control.
+//               </p>
+//             </div>
+//             <div className="bg-gray-900/80 p-6 rounded-lg border border-blue-500/30 hover:border-blue-400 transition-colors">
+//               <div className="bg-blue-500/20 p-3 rounded-full w-fit mb-4">
+//                 <Shield className="h-8 w-8 text-blue-400" />
+//               </div>
+//               <h3 className="text-xl font-bold text-white mb-2">Grid Security</h3>
+//               <p className="text-gray-300">
+//                 Protect critical infrastructure with AI-powered threat detection and response systems.
+//               </p>
+//             </div>
+//           </div>
+//         </div>
+//       </section>
+
+//       {/* CTA Section */}
+//       <section className="relative z-20 py-16 px-4 md:px-8">
+//         <div className="container mx-auto max-w-4xl bg-gradient-to-r from-blue-900/70 to-black/70 backdrop-blur-sm p-8 md:p-12 rounded-xl border border-blue-500/30">
+//           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+//             <div>
+//               <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
+//                 Ready to modernize your energy infrastructure?
+//               </h2>
+//               <p className="text-gray-300">Schedule a consultation with our experts today.</p>
+//             </div>
+//             <Button className="bg-yellow-400 hover:bg-yellow-500 text-black px-8 py-6 whitespace-nowrap">
+//               Contact Us
+//             </Button>
+//           </div>
+//         </div>
+//       </section>
+
+//       {/* Footer */}
+//       <footer className="relative z-20 bg-black/80 backdrop-blur-sm py-8 px-4 md:px-8 mt-auto">
+//         <div className="container mx-auto">
+//           <div className="flex flex-col md:flex-row justify-between items-center">
+//             <div className="flex items-center mb-4 md:mb-0">
+//               <span className="text-yellow-400 font-bold text-xl">SmartGrid</span>
+//               <span className="text-blue-400 font-bold text-xl">AI</span>
+//               <span className="text-gray-400 ml-2 text-sm">© {new Date().getFullYear()} All Rights Reserved</span>
+//             </div>
+//             <div className="flex space-x-6">
+//               <Link href="#" className="text-gray-400 hover:text-yellow-400 transition-colors">
+//                 Privacy Policy
+//               </Link>
+//               <Link href="#" className="text-gray-400 hover:text-yellow-400 transition-colors">
+//                 Terms of Service
+//               </Link>
+//               <Link href="#" className="text-gray-400 hover:text-yellow-400 transition-colors">
+//                 Contact
+//               </Link>
+//             </div>
+//           </div>
+//         </div>
+//       </footer>
+//     </div>
+//   )
+// }
