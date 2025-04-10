@@ -1,1 +1,1 @@
-# SmartGridAI
+This is smartgridsense AI project
