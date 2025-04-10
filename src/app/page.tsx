@@ -17,7 +17,7 @@ export default function Home() {
     <main className="min-h-screen">
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center ">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e')] bg-cover bg-center opacity-10"></div>
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e')] bg-cover bg-center opacity-60"></div>
         <div className="container mx-auto px-4 text-center z-10" data-aos="fade-up">
           <h1 className="text-5xl md:text-7xl font-bold mb-6">SmartGridAI</h1>
           <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
