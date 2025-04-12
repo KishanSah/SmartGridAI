@@ -1,39 +1,39 @@
 "use client";
 
 import { useEffect } from "react";
-import { 
-  BarChart, 
-  Bar, 
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
-  Legend,
-  LineChart,
-  Line,
-  PieChart,
-  Pie,
-  Cell
-} from "recharts";
+import { Tooltip, Legend,PieChart,Pie,Cell } from "recharts";
 import { Battery, Sun, Wind } from "lucide-react";
 import AOS from "aos";
+import EnergyChart from "../../components/demandSupplyChart";
+import data from './demand-supply.json';
+import EnergyGenerationCards from '../../components/totalEnergyGenerationChart';
+import PowerGenerationOverTimeChart from "../../components/powerGenerationOverTimeChart";
+import FuelMixChart from "@/components/fuel-mix-chart";
 
-const powerData = [
-  { name: "00:00", solar: 0, wind: 150, battery: 200 },
-  { name: "04:00", solar: 0, wind: 180, battery: 180 },
-  { name: "08:00", solar: 300, wind: 200, battery: 150 },
-  { name: "12:00", solar: 400, wind: 180, battery: 120 },
-  { name: "16:00", solar: 200, wind: 220, battery: 160 },
-  { name: "20:00", solar: 0, wind: 190, battery: 190 },
-];
+let totalSolar = 0, totalGas = 0, totalBattery = 0, totalOther = 0;
 
-const sourceDistribution = [
-  { name: "Solar", value: 35 },
-  { name: "Wind", value: 40 },
-  { name: "Battery", value: 25 },
-];
+  data.forEach((item) => {
+    totalSolar += item.totalSolarEnergyGeneration;
+    totalGas += item.totalGasEnergyGeneration;
+    totalBattery += item.totalBatteryEnergyGeneration;
+    totalOther += item.totalOtherEnergyGeneration;
+  });
 
-const COLORS = ["#FCD34D", "#60A5FA", "#A78BFA"];
+  const totalAll = totalSolar + totalGas + totalBattery + totalOther;
+
+  // Step 2: Calculate percentages
+  const chartData = [
+    { name: 'Solar', value: Math.round((totalSolar / totalAll) * 100) },
+    { name: 'Gas', value: Math.round((totalGas / totalAll) * 100) },
+    { name: 'Battery', value: Math.round((totalBattery / totalAll) * 100) },
+    { name: 'Other', value: Math.round((totalOther / totalAll) * 100) },
+  ];
+
+const transformedData = data.map((item) => ({
+  ...item,  
+  otherEnergyGeneration: item.totalOtherEnergyGeneration,
+}));
+const COLORS = ['#FFD700', '#FF6347', '#00BFFF', '#9370DB'];
 
 export default function Dashboard() {
   useEffect(() => {
@@ -49,26 +49,26 @@ export default function Dashboard() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Power Generation Over Time */}
+        <div className="bg-white p-3 rounded-xl shadow-lg" data-aos="fade-up">
+          <h2 className="text-xl font-semibold mb-6">Demand and Supply Chart</h2>
+          <EnergyChart data={data}/>
+        </div>
         <div className="bg-white p-6 rounded-xl shadow-lg" data-aos="fade-up">
           <h2 className="text-xl font-semibold mb-6">Power Generation Over Time</h2>
-          <LineChart width={600} height={300} data={powerData}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Line type="monotone" dataKey="solar" stroke="#FCD34D" />
-            <Line type="monotone" dataKey="wind" stroke="#60A5FA" />
-            <Line type="monotone" dataKey="battery" stroke="#A78BFA" />
-          </LineChart>
+          <PowerGenerationOverTimeChart data = {data}/>
         </div>
 
+        {/* Source Distribution */}
+        <div className="bg-white p-6 rounded-xl shadow-lg" data-aos="fade-up">
+          <h2 className="text-xl font-semibold mb-6">Sample chart</h2>
+          <EnergyGenerationCards data={transformedData}/>
+        </div>
         {/* Source Distribution */}
         <div className="bg-white p-6 rounded-xl shadow-lg" data-aos="fade-up">
           <h2 className="text-xl font-semibold mb-6">Power Source Distribution</h2>
           <PieChart width={400} height={300}>
             <Pie
-              data={sourceDistribution}
+              data={chartData}
               cx={200}
               cy={150}
               innerRadius={60}
@@ -76,7 +76,7 @@ export default function Dashboard() {
               fill="#8884d8"
               dataKey="value"
             >
-              {sourceDistribution.map((entry, index) => (
+              {chartData.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
               ))}
             </Pie>
@@ -86,7 +86,7 @@ export default function Dashboard() {
         </div>
 
         {/* Power Source Stats */}
-        <div className="bg-white p-6 rounded-xl shadow-lg lg:col-span-2" data-aos="fade-up">
+        {/* <div className="bg-white p-6 rounded-xl shadow-lg lg:col-span-2" data-aos="fade-up">
           <h2 className="text-xl font-semibold mb-6">Current Power Source Status</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="flex items-center space-x-4 p-4 bg-yellow-50 rounded-lg">
@@ -111,7 +111,7 @@ export default function Dashboard() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
