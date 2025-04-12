@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
 import { LayoutDashboard, Brain, Zap } from 'lucide-react';
+import ChatComponent from './ai/page';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -60,6 +61,7 @@ export default function RootLayout({
           {/* Main Content */}
           <div className="flex-1 bg-gray-50">
             {children}
+            <ChatComponent/>
           </div>
         </div>
       </body>
