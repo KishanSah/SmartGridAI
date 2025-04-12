@@ -19,7 +19,7 @@ export default function Home() {
       <section className="relative h-screen flex items-center justify-center ">
          <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
         <video autoPlay loop muted playsInline className="absolute min-w-full min-h-full object-cover">
-          <source src="https://cdn.dribbble.com/userupload/18851822/file/original-064bf23edf508c5be11fd8c12ca2beb6.mp4" type="video/mp4" />
+          <source src="video-background.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         {/* Overlay to make text more readable */}

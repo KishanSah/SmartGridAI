@@ -60,7 +60,7 @@ export default function Dashboard() {
 
         {/* Source Distribution */}
         <div className="bg-white p-6 rounded-xl shadow-lg" data-aos="fade-up">
-          <h2 className="text-xl font-semibold mb-6">Sample chart</h2>
+          <h2 className="text-xl font-semibold mb-6">Grid Energy Stats</h2>
           <EnergyGenerationCards data={transformedData}/>
         </div>
         {/* Source Distribution */}
