@@ -48,6 +48,7 @@ const ChatComponent = () => {
   const handleSend = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim()) return;
+    setInput('');
 
     const userMsg = { text: input, sender: 'user' as const };
     setMessages((prev) => [...prev, userMsg]);
@@ -62,7 +63,7 @@ const ChatComponent = () => {
       setMessages((prev) => [...prev, { text: 'Something went wrong.', sender: 'bot' }]);
     }
 
-    setInput('');
+   
   };
 
   return (
